@@ -75,7 +75,7 @@ Make a list of each parson’s strengths.
 
 - Sheldon
 
-  - Front Magistrate
+  - Front end Magistrate
 
 How can you best utilize these strengths in the development of your application?
 
