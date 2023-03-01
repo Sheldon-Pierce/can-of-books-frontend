@@ -9,7 +9,6 @@ export default class BookFormModal extends React.Component {
 		super(props)
 		console.log()
 	}
-
 	render() {
 		return (
 			<Modal

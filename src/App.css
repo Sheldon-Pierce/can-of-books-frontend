@@ -1,3 +1,21 @@
+:root {
+	--bg-gray: rgb(66, 66, 66);
+	--bg-dark-gray: rgb(44, 44, 44);
+}
+
+html,
+#root {
+	background-color: var(--bg-dark-gray);
+}
+
 .carousel-indicators {
-	background-color: black;
+	background-color: var(--bg-gray);
+}
+
+.bg-gray {
+	background-color: var(--bg-gray);
+}
+
+.bg-dark-gray {
+	background-color: var(--bg-dark-gray);
 }
