@@ -31,6 +31,10 @@ Books are life-changing. They have the power to enlighten, educate, entertain, h
 ## Change Log
 
 02-27-2023 3:00pm - Initial commit
+02-27-2023 5:30pm - First get route created with display carousel
+
+02-28-2023 5:00pm - Adds create and delete, form and buttons
+02-28-2023 6:30pm - Cleaned up styles, and added QOL features
 
 ## Estimates
 
