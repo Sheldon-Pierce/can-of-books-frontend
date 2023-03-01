@@ -40,11 +40,12 @@ class BestBooks extends React.Component {
 		this.setState({ showAddBookForm: !this.state.showAddBookForm })
 	}
 
-	bookCreateHandler = async (book) => {
+	bookCreateHandler = async book => {
 		try {
-			let url = `${SERVER}/books/new`;
-			await axios.post(url, book).then(
-			respnse => {this.fetchBooks()})
+			let url = `${SERVER}/books/new`
+			await axios.post(url, book).then(respnse => {
+				this.fetchBooks()
+			})
 		} catch (error) {
 			console.error(error)
 		}
@@ -70,7 +71,9 @@ class BestBooks extends React.Component {
 							)
 						})
 					) : (
-						<p>{'Book collection is empty!'}</p>
+						<h1 className='text-light text-center my-5'>
+							{'Book collection is empty!'}
+						</h1>
 					)}
 				</Carousel>
 
