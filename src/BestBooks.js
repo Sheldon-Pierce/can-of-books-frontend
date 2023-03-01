@@ -40,6 +40,16 @@ class BestBooks extends React.Component {
 		this.setState({ showAddBookForm: !this.state.showAddBookForm })
 	}
 
+	bookCreateHandler = async (book) => {
+		try {
+			let url = `${SERVER}/books/new`;
+			await axios.post(url, book).then(
+			respnse => {this.fetchBooks()})
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
 	render() {
 		/* TODO: render all the books in a Carousel */
 		return (
@@ -69,6 +79,7 @@ class BestBooks extends React.Component {
 				<BookFormModal
 					show={this.state.showAddBookForm}
 					toggleAddBook={this.toggleAddBook}
+					createBook={this.bookCreateHandler}
 				/>
 			</Container>
 		)
