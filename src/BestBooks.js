@@ -42,7 +42,7 @@ class BestBooks extends React.Component {
 	bookCreateHandler = async book => {
 		try {
 			let url = `${SERVER}/books/new`
-			await axios.post(url, book).then(respnse => {
+			await axios.post(url, book).then(response => {
 				this.fetchBooks()
 			})
 		} catch (error) {
@@ -62,19 +62,27 @@ class BestBooks extends React.Component {
 					{this.state.books.length ? (
 						this.state.books.map((item, i) => {
 							return (
-								
-								<Carousel.Item key={i} className=' text-center p-5 mb-5 bg-dark text-light'>
+								<Carousel.Item
+									key={i}
+									className=' text-center p-5 mb-5 bg-dark text-light'
+								>
 									<h3>{item.title}</h3>
 									<h5>{item.author}</h5>
 									<p>{item.description}</p>
-									<Delete fetchBooks={this.fetchBooks()} className='text-center' book={item.title}/>
+									<Delete
+										fetchBooks={() => {
+											this.fetchBooks()
+										}}
+										className='text-center'
+										book={item.title}
+									/>
 								</Carousel.Item>
-									
-								
 							)
 						})
 					) : (
-						<p>{'Book collection is empty!'}</p>
+						<h1 className='text-light m-5 text-center'>
+							{'Book collection is empty!'}
+						</h1>
 					)}
 				</Carousel>
 
