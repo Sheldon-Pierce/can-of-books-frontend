@@ -20,7 +20,7 @@ export default class BookFormModal extends React.Component {
 		}
 		this.props.createBook(enteredData);
 	}
-
+  
 	render() {
 		return (
 			<Modal
