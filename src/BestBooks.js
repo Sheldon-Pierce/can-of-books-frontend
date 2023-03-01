@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel'
-
+import Delete from './Delete'
 import AddBook from './AddBook'
 import BookFormModal from './BookFormModal'
 import { Container } from 'react-bootstrap'
@@ -28,7 +28,6 @@ class BestBooks extends React.Component {
 
 		try {
 			const response = await axios.get(apiUrl)
-
 			this.setState({ books: response.data })
 		} catch (error) {
 			console.error(error)
@@ -63,11 +62,15 @@ class BestBooks extends React.Component {
 					{this.state.books.length ? (
 						this.state.books.map((item, i) => {
 							return (
-								<Carousel.Item key={i} className=' p-5 mb-5 bg-dark text-light'>
+								
+								<Carousel.Item key={i} className=' text-center p-5 mb-5 bg-dark text-light'>
 									<h3>{item.title}</h3>
 									<h5>{item.author}</h5>
 									<p>{item.description}</p>
+									<Delete fetchBooks={this.fetchBooks()} className='text-center' book={item.title}/>
 								</Carousel.Item>
+									
+								
 							)
 						})
 					) : (
@@ -76,7 +79,6 @@ class BestBooks extends React.Component {
 				</Carousel>
 
 				<AddBook onClick={this.toggleAddBook} />
-
 				<BookFormModal
 					show={this.state.showAddBookForm}
 					toggleAddBook={this.toggleAddBook}
