@@ -40,11 +40,12 @@ class BestBooks extends React.Component {
 		this.setState({ showAddBookForm: !this.state.showAddBookForm })
 	}
 
-	bookCreateHandler = async (book) => {
+	bookCreateHandler = async book => {
 		try {
-			let url = `${SERVER}/books/new`;
-			await axios.post(url, book).then(
-			respnse => {this.fetchBooks()})
+			let url = `${SERVER}/books/new`
+			await axios.post(url, book).then(respnse => {
+				this.fetchBooks()
+			})
 		} catch (error) {
 			console.error(error)
 		}
@@ -54,7 +55,7 @@ class BestBooks extends React.Component {
 		/* TODO: render all the books in a Carousel */
 		return (
 			<Container fluid className='bg-dark bg-gradient'>
-				<h2 className='my-5 text-light'>
+				<h2 className='my-5 text-light pt-2 text-center'>
 					My Essential Lifelong Learning &amp; Formation Shelf
 				</h2>
 
