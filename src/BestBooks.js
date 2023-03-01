@@ -5,6 +5,9 @@ import Delete from './Delete'
 import AddBook from './AddBook'
 import BookFormModal from './BookFormModal'
 import { Container } from 'react-bootstrap'
+import Update from './Update'
+import UpdateFormModal from './UpdateFormModal'
+
 
 const SERVER = process.env.REACT_APP_SERVER
 
@@ -14,6 +17,7 @@ class BestBooks extends React.Component {
 		this.state = {
 			books: [],
 			showAddBookForm: false,
+			showUpdateBookForm: false,
 		}
 	}
 
@@ -37,6 +41,11 @@ class BestBooks extends React.Component {
 	toggleAddBook = e => {
 		console.log('toggling')
 		this.setState({ showAddBookForm: !this.state.showAddBookForm })
+	}
+
+	toggleUpdateBook = e => {
+		console.log('toggling')
+		this.setState({ showUpdateBookForm: !this.state.showUpdateBookForm })
 	}
 
 	bookCreateHandler = async book => {
@@ -76,6 +85,21 @@ class BestBooks extends React.Component {
 										className='text-center'
 										book={item.title}
 									/>
+									<Update
+										
+										className='text-center'
+										book={item.title}
+										onClick={this.toggleUpdateBook}
+									/>
+									<UpdateFormModal
+									fetchBooks={() => {
+											this.fetchBooks()
+										}}
+										show={this.state.showUpdateBookForm}
+										bookData={item}
+										toggleUpdateBook={this.toggleUpdateBook}
+
+									/>
 								</Carousel.Item>
 							)
 						})
@@ -92,6 +116,7 @@ class BestBooks extends React.Component {
 					toggleAddBook={this.toggleAddBook}
 					createBook={this.bookCreateHandler}
 				/>
+
 			</Container>
 		)
 	}
