@@ -10,13 +10,16 @@ class Update extends React.Component {
 
 	handleClick = () => {
 		this.setState({ disabled: true })
-		
 	}
 
 	render() {
 		return (
 			<>
-				<Button variant='primary' type='submit'  disabled={this.state.disabled}>
+				<Button
+					variant='primary'
+					disabled={this.state.disabled}
+					onClick={this.props.onClick}
+				>
 					<PencilSquare />
 				</Button>
 				{this.state.disabled ? (
@@ -38,4 +41,4 @@ class Update extends React.Component {
 	}
 }
 
-export default Update;
+export default Update

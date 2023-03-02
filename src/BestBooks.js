@@ -3,11 +3,11 @@ import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel'
 import Delete from './Delete'
 import AddBook from './AddBook'
+
 import BookFormModal from './BookFormModal'
 import { Container } from 'react-bootstrap'
 import Update from './Update'
 import UpdateFormModal from './UpdateFormModal'
-
 
 const SERVER = process.env.REACT_APP_SERVER
 
@@ -76,29 +76,34 @@ class BestBooks extends React.Component {
 									className=' text-center p-5 mb-5 bg-dark text-light'
 								>
 									<h3>{item.title}</h3>
-									<h5>{item.author}</h5>
+									<h5 className='my-3'>{item.author}</h5>
 									<p>{item.description}</p>
-									<Delete
-										fetchBooks={() => {
-											this.fetchBooks()
-										}}
-										className='text-center'
-										book={item.title}
-									/>
-									<Update
-										
-										className='text-center'
-										book={item.title}
-										onClick={this.toggleUpdateBook}
-									/>
+									<h6>
+										{item.status ? `I have ${item.status} read this book` : ''}
+									</h6>
+
+									<Container className='updateButtons mt-5'>
+										<Update
+											className='text-center'
+											book={item.title}
+											onClick={this.toggleUpdateBook}
+										/>
+										<Delete
+											fetchBooks={() => {
+												this.fetchBooks()
+											}}
+											className='text-center'
+											book={item.title}
+										/>
+									</Container>
+
 									<UpdateFormModal
-									fetchBooks={() => {
+										fetchBooks={() => {
 											this.fetchBooks()
 										}}
 										show={this.state.showUpdateBookForm}
 										bookData={item}
-										toggleUpdateBook={this.toggleUpdateBook}
-
+										onHide={this.toggleUpdateBook}
 									/>
 								</Carousel.Item>
 							)
@@ -111,12 +116,12 @@ class BestBooks extends React.Component {
 				</Carousel>
 
 				<AddBook onClick={this.toggleAddBook} />
+
 				<BookFormModal
 					show={this.state.showAddBookForm}
 					toggleAddBook={this.toggleAddBook}
 					createBook={this.bookCreateHandler}
 				/>
-
 			</Container>
 		)
 	}

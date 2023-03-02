@@ -19,3 +19,9 @@ html,
 .bg-dark-gray {
 	background-color: var(--bg-dark-gray);
 }
+
+.updateButtons {
+	display: flex;
+	justify-content: center;
+	gap: 1em;
+}
