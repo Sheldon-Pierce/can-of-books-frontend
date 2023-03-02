@@ -8,6 +8,7 @@ export default class BookFormModal extends React.Component {
 	constructor(props) {
 		super(props)
 		console.log()
+		
 	}
 
 	handleSubmit = e => {
