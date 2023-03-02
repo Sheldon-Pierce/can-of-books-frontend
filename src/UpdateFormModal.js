@@ -37,7 +37,7 @@ export default class UpdateFormModal extends React.Component {
 				})
 				this.props.fetchBooks()
 				this.setState({ disabled: false })
-				this.props.onHide()
+				this.props.onHide(this.props.book)
 			})
 	}
 
@@ -45,7 +45,9 @@ export default class UpdateFormModal extends React.Component {
 		return (
 			<Modal
 				show={this.props.show}
-				onHide={this.props.onHide}
+				onHide={() => {
+					this.props.onHide(this.props.book)
+				}}
 				size='lg'
 				aria-labelledby='contained-modal-title-vcenter'
 				centered
@@ -111,7 +113,13 @@ export default class UpdateFormModal extends React.Component {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={this.props.onHide}>Close</Button>
+					<Button
+						onClick={() => {
+							this.props.onHide(this.props.book)
+						}}
+					>
+						Close
+					</Button>
 				</Modal.Footer>
 			</Modal>
 		)

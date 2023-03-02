@@ -16,6 +16,12 @@ class BestBooks extends React.Component {
 		super(props)
 		this.state = {
 			books: [],
+			selectedBook: {
+				title: '',
+				author: '',
+				description: '',
+				status: '',
+			},
 			showAddBookForm: false,
 			showUpdateBookForm: false,
 		}
@@ -43,9 +49,11 @@ class BestBooks extends React.Component {
 		this.setState({ showAddBookForm: !this.state.showAddBookForm })
 	}
 
-	toggleUpdateBook = e => {
-		console.log('toggling')
-		this.setState({ showUpdateBookForm: !this.state.showUpdateBookForm })
+	toggleUpdateBook = book => {
+		this.setState({
+			selectedBook: book,
+			showUpdateBookForm: !this.state.showUpdateBookForm,
+		})
 	}
 
 	bookCreateHandler = async book => {
@@ -86,7 +94,10 @@ class BestBooks extends React.Component {
 										<Update
 											className='text-center'
 											book={item.title}
-											onClick={this.toggleUpdateBook}
+											onClick={() => {
+												this.toggleUpdateBook(item)
+											}}
+											value={item}
 										/>
 										<Delete
 											fetchBooks={() => {
@@ -96,15 +107,6 @@ class BestBooks extends React.Component {
 											book={item.title}
 										/>
 									</Container>
-
-									<UpdateFormModal
-										fetchBooks={() => {
-											this.fetchBooks()
-										}}
-										show={this.state.showUpdateBookForm}
-										bookData={item}
-										onHide={this.toggleUpdateBook}
-									/>
 								</Carousel.Item>
 							)
 						})
@@ -116,6 +118,16 @@ class BestBooks extends React.Component {
 				</Carousel>
 
 				<AddBook onClick={this.toggleAddBook} />
+				<UpdateFormModal
+					fetchBooks={() => {
+						this.fetchBooks()
+					}}
+					show={this.state.showUpdateBookForm}
+					bookData={this.state.selectedBook}
+					onHide={() => {
+						this.toggleUpdateBook(this.state.selectedBook)
+					}}
+				/>
 
 				<BookFormModal
 					show={this.state.showAddBookForm}
