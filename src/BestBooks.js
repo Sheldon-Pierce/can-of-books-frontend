@@ -8,6 +8,8 @@ import BookFormModal from './BookFormModal'
 import { Container } from 'react-bootstrap'
 import Update from './Update'
 import UpdateFormModal from './UpdateFormModal'
+import { withAuth0 } from '@auth0/auth0-react'
+import LogoutButton from './LogoutButton'
 
 const SERVER = process.env.REACT_APP_SERVER
 
@@ -75,6 +77,8 @@ class BestBooks extends React.Component {
 					My Essential Lifelong Learning &amp; Formation Shelf
 				</h2>
 
+				<LogoutButton />
+
 				<Carousel className='w-100'>
 					{this.state.books.length ? (
 						this.state.books.map((item, i) => {
@@ -138,4 +142,4 @@ class BestBooks extends React.Component {
 		)
 	}
 }
-export default BestBooks
+export default withAuth0(BestBooks)
